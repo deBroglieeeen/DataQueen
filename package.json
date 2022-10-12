@@ -9,7 +9,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.0.0",
+    "@chakra-ui/react": "^2.3.5",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "framer-motion": "^6",
