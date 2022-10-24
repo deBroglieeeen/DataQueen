@@ -1,8 +1,19 @@
-import { Text, Box, Button, Flex, Icon, useColorModeValue } from '@chakra-ui/react'
+import {
+  Text,
+  Box,
+  Button,
+  Flex,
+  Icon,
+  useColorModeValue,
+  IconButton,
+  Divider,
+} from '@chakra-ui/react'
 import React, { useRef, useState } from 'react'
 import { IconBox } from './IconBox'
 import { HiOutlineDatabase } from 'react-icons/hi'
 import { CiViewTable } from 'react-icons/ci'
+import DataQueenSmallLogo from '../../public/DataQueenSmallLogo.svg'
+import Image from 'next/image'
 
 const Sidebar: React.VFC = () => {
   const mainPanel = useRef<HTMLDivElement>(null)
@@ -34,6 +45,15 @@ const Sidebar: React.VFC = () => {
           m={sidebarMargins}
           borderRadius={sidebarRadius}
         >
+          <Box marginTop='40px' marginBottom='46px'>
+            <Image src='/DataQueenSmallLogo.svg' height='60px' width='60px' alt='' />
+          </Box>
+
+          <Divider
+            bgGradient='linear-gradient(to-r,gray.300 0%,gray.300 100%,gray.300 15%)'
+            marginBottom='40px'
+          />
+
           <Button
             boxSize='initial'
             justifyContent='flex-start'
@@ -103,7 +123,7 @@ const Sidebar: React.VFC = () => {
                 <Icon as={CiViewTable} color='#AA82DD' width='25px' height='25px'></Icon>
               </IconBox>
               <Text color={inactiveColor} my='auto' fontSize='sm'>
-                データセット
+                SQL実行
               </Text>
             </Flex>
           </Button>

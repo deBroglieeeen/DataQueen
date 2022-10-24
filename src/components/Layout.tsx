@@ -1,6 +1,6 @@
-import { HStack, Container } from '@chakra-ui/react'
+import { HStack, Box, Flex, Container } from '@chakra-ui/react'
 import React, { ReactNode } from 'react'
-import { Sidebar } from './sidebar'
+import { Sidebar } from './Sidebar'
 import { SIDEBAR_WIDTH } from '../config/css'
 type Props = {
   children: ReactNode
@@ -8,10 +8,19 @@ type Props = {
 
 const Layout: React.VFC<Props> = ({ children }) => {
   return (
-    <HStack backgroundColor='#F8F9FA'>
+    <Box display='flex' backgroundColor='#F8F9FA'>
       <Sidebar />
-      {children}
-    </HStack>
+      <Container
+        minHeight='container.xl'
+        maxW='calc(100% - 275px)'
+        w={{
+          base: '100%',
+          xl: 'calc(100% - 275px)',
+        }}
+      >
+        {children}
+      </Container>
+    </Box>
   )
 }
 
