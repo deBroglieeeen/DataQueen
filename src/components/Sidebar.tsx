@@ -123,7 +123,7 @@ const Sidebar: React.VFC = () => {
                 <Icon as={CiViewTable} color='#AA82DD' width='25px' height='25px'></Icon>
               </IconBox>
               <Text color={inactiveColor} my='auto' fontSize='sm'>
-                SQL実行
+                SQLクエリ実行
               </Text>
             </Flex>
           </Button>
