@@ -46,7 +46,7 @@ const Sidebar: React.VFC = () => {
           borderRadius={sidebarRadius}
         >
           <Box marginTop='40px' marginBottom='46px'>
-            <Image src='/DataQueenSmallLogo.svg' height='60px' width='60px' alt='' />
+            <Image src='/DataQueenSmallLogo.svg' height='60' width='60' alt='' />
           </Box>
 
           <Divider
