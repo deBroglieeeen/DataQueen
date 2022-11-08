@@ -39,7 +39,7 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
           </Tbody>
           <Tfoot>
             {Object.keys(responseData[0]).map((key) => (
-              <Th key={key}>key</Th>
+              <Th key={key.toString()}>{key}</Th>
             ))}
           </Tfoot>
         </Table>
