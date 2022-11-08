@@ -1,10 +1,15 @@
 import { extendTheme } from '@chakra-ui/react'
 import { buttonStyles } from './button'
+import { Noto_Sans_JP } from '@next/font/google'
+
+const notosansJP = Noto_Sans_JP({
+  weight: '400',
+})
 
 const theme = extendTheme({
   fonts: {
-    heading: `'Noto Sans JP', sans-serif`,
-    body: `'Noto Sans JP', sans-serif`,
+    heading: notosansJP,
+    body: notosansJP,
   },
   colors: {
     Primary: `#38B2AC`,
