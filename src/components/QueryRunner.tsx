@@ -2,7 +2,7 @@ import { Textarea, Box, Button, FormControl } from '@chakra-ui/react'
 import { VscRunAll } from 'react-icons/vsc'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import React from 'react'
-import { fetch } from 'undici'
+import axios from 'axios'
 
 type Form = {
   query: string
@@ -16,14 +16,26 @@ const QueryRunner: React.VFC = () => {
   } = useForm<Form>({ mode: 'onBlur', reValidateMode: 'onChange' })
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
-    const res = await fetch('127.0.0.1:3000/query', {
-      body: JSON.stringify({
-        query: data.query,
-        date: '20220101',
-      }),
-      method: 'POST',
-    })
     console.log('hi')
+    const executeQuery = JSON.stringify({
+      query: data.query,
+      date: '20220101',
+    })
+    const config = {
+      method: 'post',
+      url: 'http://127.0.0.1:3000/query',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      data: executeQuery,
+    }
+
+    try {
+      const response = await axios(config)
+      console.log(response)
+    } catch (error) {
+      console.error(error)
+    }
   }
   return (
     <>
@@ -33,7 +45,7 @@ const QueryRunner: React.VFC = () => {
             <Button colorScheme='teal' rightIcon={<VscRunAll />} type='submit'>
               実行
             </Button>
-            <FormControl>
+            <FormControl marginTop='40px'>
               <Textarea
                 width='77vw'
                 minH='316px'
