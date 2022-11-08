@@ -8,7 +8,11 @@ type Form = {
   query: string
 }
 
-const QueryRunner: React.VFC = () => {
+type Props = {
+  setResponseData: any
+}
+
+const QueryRunner: React.VFC<Props> = ({ setResponseData }) => {
   const {
     register,
     handleSubmit,
@@ -33,6 +37,8 @@ const QueryRunner: React.VFC = () => {
     try {
       const response = await axios(config)
       console.log(response)
+      setResponseData(response.data.data)
+      console.log(response.data.data[0])
     } catch (error) {
       console.error(error)
     }

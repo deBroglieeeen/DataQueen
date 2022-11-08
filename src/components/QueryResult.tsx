@@ -11,8 +11,41 @@ import {
 } from '@chakra-ui/react'
 import React from 'react'
 
-const QueryResult: React.VFC = () => {
-  return (
+type Props = {
+  responseData: Object[]
+}
+
+const QueryResult: React.VFC<Props> = ({ responseData }) => {
+  return responseData ? (
+    <>
+      <TableContainer marginTop='40px'>
+        <Table variant='striped' colorScheme='teal'>
+          <TableCaption>実行結果</TableCaption>
+          <Thead>
+            <Tr>
+              {Object.keys(responseData[0]).map((key) => (
+                <Th key={key.toString()}>{key}</Th>
+              ))}
+            </Tr>
+          </Thead>
+          <Tbody>
+            {responseData.map((data) => (
+              <Tr key={data.toString()}>
+                {Object.values(data).map((value) => (
+                  <Td key={value.toString()}>{value}</Td>
+                ))}
+              </Tr>
+            ))}
+          </Tbody>
+          <Tfoot>
+            {Object.keys(responseData[0]).map((key) => (
+              <Th key={key}>key</Th>
+            ))}
+          </Tfoot>
+        </Table>
+      </TableContainer>
+    </>
+  ) : (
     <TableContainer marginTop='40px'>
       <Table variant='striped' colorScheme='teal'>
         <TableCaption>Imperial to metric conversion factors</TableCaption>
