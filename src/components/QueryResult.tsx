@@ -9,13 +9,14 @@ import {
   Th,
   Tfoot,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 type Props = {
   responseData: Object[]
 }
 
 const QueryResult: React.VFC<Props> = ({ responseData }) => {
+  useEffect(() => {}, [responseData])
   return responseData ? (
     <>
       <TableContainer marginTop='40px'>
@@ -24,22 +25,22 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
           <Thead>
             <Tr>
               {Object.keys(responseData[0]).map((key) => (
-                <Th key={key.toString()}>{key}</Th>
+                <Th key={`head${key.toString()}`}>{key}</Th>
               ))}
             </Tr>
           </Thead>
           <Tbody>
             {responseData.map((data) => (
               <Tr key={data.toString()}>
-                {Object.values(data).map((value) => (
-                  <Td key={value.toString()}>{value}</Td>
+                {Object.values(data).map((value, index) => (
+                  <Td key={`${data.toString()}${index}${value.toString()}`}>{value}</Td>
                 ))}
               </Tr>
             ))}
           </Tbody>
           <Tfoot>
             {Object.keys(responseData[0]).map((key) => (
-              <Th key={key.toString()}>{key}</Th>
+              <Th key={`foot${key.toString()}`}>{key}</Th>
             ))}
           </Tfoot>
         </Table>
