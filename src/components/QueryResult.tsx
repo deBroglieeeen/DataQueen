@@ -30,8 +30,8 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
             </Tr>
           </Thead>
           <Tbody>
-            {responseData.map((data) => (
-              <Tr key={data.toString()}>
+            {responseData.map((data, index) => (
+              <Tr key={`body Tr ${index}`}>
                 {Object.values(data).map((value, index) => (
                   <Td key={`${data.toString()}${index}${value.toString()}`}>{value}</Td>
                 ))}
@@ -39,9 +39,11 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
             ))}
           </Tbody>
           <Tfoot>
-            {Object.keys(responseData[0]).map((key) => (
-              <Th key={`foot${key.toString()}`}>{key}</Th>
-            ))}
+            <Tr>
+              {Object.keys(responseData[0]).map((key) => (
+                <Th key={`foot${key.toString()}`}>{key}</Th>
+              ))}
+            </Tr>
           </Tfoot>
         </Table>
       </TableContainer>
