@@ -20,8 +20,8 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
   return responseData ? (
     <>
       <TableContainer marginTop='40px'>
-        <Table variant='striped' colorScheme='teal'>
-          <TableCaption>実行結果</TableCaption>
+        <Table variant='striped' bg='#EEE6F8'>
+          <TableCaption placement='top'>実行結果</TableCaption>
           <Thead>
             <Tr>
               {Object.keys(responseData[0]).map((key) => (
@@ -50,7 +50,7 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
     </>
   ) : (
     <TableContainer marginTop='40px'>
-      <Table variant='striped' colorScheme='teal'>
+      <Table variant='striped' bg='#EEE6F8'>
         <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
           <Tr>
