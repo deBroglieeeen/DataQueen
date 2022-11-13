@@ -1,8 +1,9 @@
-import { Textarea, Box, Button, FormControl } from '@chakra-ui/react'
+import { Box, Button, FormControl } from '@chakra-ui/react'
 import { VscRunAll } from 'react-icons/vsc'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
+import Editor, { useMonaco } from '@monaco-editor/react'
 
 type Form = {
   query: string
@@ -22,7 +23,7 @@ const QueryRunner: React.VFC<Props> = ({ setResponseData }) => {
   const onSubmit: SubmitHandler<Form> = async (data) => {
     console.log('hi')
     const executeQuery = JSON.stringify({
-      query: data.query,
+      query: editorValue,
       date: '20220101',
     })
     const config = {
@@ -43,6 +44,14 @@ const QueryRunner: React.VFC<Props> = ({ setResponseData }) => {
       console.error(error)
     }
   }
+
+  const monaco = useMonaco()
+  const [editorValue, setEditorValue] = useState('SELECT * FROM User')
+  function handleEditorChange(value: any, event: any) {
+    console.log('here is the current model value:', value)
+    setEditorValue(value)
+  }
+
   return (
     <>
       <Box marginTop='40px'>
@@ -52,13 +61,13 @@ const QueryRunner: React.VFC<Props> = ({ setResponseData }) => {
               実行
             </Button>
             <FormControl marginTop='40px'>
-              <Textarea
+              <Editor
+                height='316px'
                 width='77vw'
-                minH='316px'
-                id='query'
-                placeholder='SELECT * FROM User'
-                {...register('query', { required: '入力してください' })}
-              ></Textarea>
+                defaultLanguage='sql'
+                defaultValue='SELECT * FROM User'
+                onChange={handleEditorChange}
+              />
             </FormControl>
           </form>
         </Box>
