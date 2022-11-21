@@ -13,7 +13,7 @@ import { fromPromise, fromValue, map, mergeMap, pipe } from 'wonka'
 import { API_HOST } from '../config/constants'
 
 const AuthorizedUrqlProvider: React.FC = ({ children }) => {
-  const { getAccessTokenSilently } = useAuth0()
+  const { getAccessTokenSilently, isAuthenticated } = useAuth0()
 
   const fetchOptionsExchange =
     (fn: any): Exchange =>
