@@ -10,7 +10,7 @@ const Header: React.VFC = () => {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      // loginWithRedirect()
+      loginWithRedirect()
     }
   }, [isAuthenticated, loginWithRedirect])
 
@@ -28,7 +28,6 @@ const Header: React.VFC = () => {
         </BreadcrumbItem>
       </Breadcrumb>
       <Box>{user ? `(ユーザー:${user?.name}${user.sub})` : null}</Box>
-      <Button onClick={() => loginWithRedirect()}>ログイン</Button>
     </Box>
   )
 }
