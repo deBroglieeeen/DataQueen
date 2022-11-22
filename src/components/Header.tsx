@@ -7,13 +7,7 @@ import { useQuery } from 'urql'
 
 const Header: React.VFC = () => {
   const { user, isAuthenticated, loginWithRedirect } = useAuth0()
-  const [{ data: userResponse }] = useQuery<GetUserByIdQuery, GetUserByIdQueryVariables>({
-    query: getUserByIdQuery,
-    variables: {
-      id: user?.sub ?? '',
-    },
-    pause: user?.sub === undefined,
-  })
+
   useEffect(() => {
     if (!isAuthenticated) {
       // loginWithRedirect()
@@ -33,7 +27,7 @@ const Header: React.VFC = () => {
           <BreadcrumbLink href='#'>SQLクエリ実行</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Box>{userResponse ? `(ユーザー:${userResponse?.users_by_pk?.name})` : null}</Box>
+      <Box>{user ? `(ユーザー:${user?.name}${user.sub})` : null}</Box>
       <Button onClick={() => loginWithRedirect()}>ログイン</Button>
     </Box>
   )
