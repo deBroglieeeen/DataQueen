@@ -3,11 +3,12 @@ import React from 'react'
 import ExcelJS from 'exceljs'
 
 type Props = {
-  columns: string[]
-  rows: any
+  //   columns: string[]
+  //   rows: any
+  data: Map<String, any>[]
 }
 
-const CSVExportButton: React.VFC<Props> = ({ columns, rows }) => {
+const CSVExportButton: React.VFC<Props> = ({ data }) => {
   const handlerClickDownloadButton = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     format: 'xlsx' | 'csv',
@@ -18,8 +19,11 @@ const CSVExportButton: React.VFC<Props> = ({ columns, rows }) => {
     workbook.addWorksheet('sheet1')
     const worksheet = workbook.getWorksheet('sheet1')
 
-    worksheet.columns = columns.map((x) => ({ header: x, key: x }))
-    worksheet.addRows = rows.map((key: String, value: any) => ({ key: value }))
+    //worksheet.columns = columns.map((x) => ({ header: x, key: x }))
+    worksheet.columns = Object.keys(data[0]).map((x) => ({ header: x, key: x }))
+    const _temp = data.map((row) => row.forEach((key: string, value: any) => ({ key: value })))
+    worksheet.addRows
+    const displayMapValues = (key, value, map) => {}
     //     worksheet.columns = [
     //       { header: 'ID', key: 'id' },
     //       { header: '作成日時', key: 'createdAt' },
@@ -51,7 +55,7 @@ const CSVExportButton: React.VFC<Props> = ({ columns, rows }) => {
     const url = window.URL.createObjectURL(blob)
     const a = document.createElement('a')
     a.href = url
-    a.download = 'Data.' + `${Date.now()}` + format //フォーマットによってファイル拡張子を変えている
+    a.download = 'Data' + `${Date.now()}.` + format //フォーマットによってファイル拡張子を変えている
     a.click()
     a.remove()
   }

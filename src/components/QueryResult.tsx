@@ -13,7 +13,7 @@ import React, { useEffect } from 'react'
 import { CSVExportButton } from './CSVExportButton'
 
 type Props = {
-  responseData: Object[]
+  responseData: Map<String, any>[]
 }
 
 const QueryResult: React.VFC<Props> = ({ responseData }) => {
@@ -21,8 +21,9 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
   return responseData ? (
     <>
       <CSVExportButton
-        columns={Object.keys(responseData[0])}
-        rows={responseData.map((data) => data)}
+        // columns={Object.keys(responseData[0])}
+        // rows={responseData.map((data) => data)}
+        data={responseData}
       />
       <TableContainer>
         <Table variant='striped' bg='#EEE6F8'>
