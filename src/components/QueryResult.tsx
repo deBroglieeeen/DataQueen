@@ -10,6 +10,7 @@ import {
   Tfoot,
 } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
+import { CSVExportButton } from './CSVExportButton'
 
 type Props = {
   responseData: Object[]
@@ -19,7 +20,11 @@ const QueryResult: React.VFC<Props> = ({ responseData }) => {
   useEffect(() => {}, [responseData])
   return responseData ? (
     <>
-      <TableContainer marginTop='40px'>
+      <CSVExportButton
+        columns={Object.keys(responseData[0])}
+        rows={responseData.map((data) => data)}
+      />
+      <TableContainer>
         <Table variant='striped' bg='#EEE6F8'>
           <TableCaption placement='top'>実行結果</TableCaption>
           <Thead>
