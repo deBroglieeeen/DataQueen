@@ -8,50 +8,59 @@ import {
   Tbody,
   Th,
   Tfoot,
+  Skeleton,
+  Box,
+  Text,
 } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { CSVExportButton } from './CSVExportButton'
 
 type Props = {
   responseData: Map<String, any>[]
+  isLoaded: boolean
+  runtime: Date
 }
 
-const QueryResult: React.VFC<Props> = ({ responseData }) => {
+const QueryResult: React.VFC<Props> = ({ responseData, isLoaded, runtime }) => {
   useEffect(() => {}, [responseData])
   return responseData ? (
     <>
-      <CSVExportButton
-        // columns={Object.keys(responseData[0])}
-        // rows={responseData.map((data) => data)}
-        data={responseData}
-      />
+      <Box display='flex'>
+        <CSVExportButton data={responseData} />
+        <Box marginLeft='20px' paddingTop='5px'>
+          <Text>{`クエリ実行時間: ${(runtime / 1000).toFixed(3)}秒`}</Text>
+        </Box>
+      </Box>
+
       <TableContainer>
-        <Table variant='striped' bg='#EEE6F8'>
-          <TableCaption placement='top'>実行結果</TableCaption>
-          <Thead>
-            <Tr>
-              {Object.keys(responseData[0]).map((key) => (
-                <Th key={`head${key.toString()}`}>{key}</Th>
-              ))}
-            </Tr>
-          </Thead>
-          <Tbody>
-            {responseData.map((data, index) => (
-              <Tr key={`body Tr ${index}`}>
-                {Object.values(data).map((value, index) => (
-                  <Td key={`${data.toString()}${index}${value.toString()}`}>{value}</Td>
+        <Skeleton isLoaded={isLoaded}>
+          <Table variant='striped' bg='#EEE6F8'>
+            <TableCaption placement='top'>実行結果</TableCaption>
+            <Thead>
+              <Tr>
+                {Object.keys(responseData[0]).map((key) => (
+                  <Th key={`head${key.toString()}`}>{key}</Th>
                 ))}
               </Tr>
-            ))}
-          </Tbody>
-          <Tfoot>
-            <Tr>
-              {Object.keys(responseData[0]).map((key) => (
-                <Th key={`foot${key.toString()}`}>{key}</Th>
+            </Thead>
+            <Tbody>
+              {responseData.map((data, index) => (
+                <Tr key={`body Tr ${index}`}>
+                  {Object.values(data).map((value, index) => (
+                    <Td key={`${data.toString()}${index}${value.toString()}`}>{value}</Td>
+                  ))}
+                </Tr>
               ))}
-            </Tr>
-          </Tfoot>
-        </Table>
+            </Tbody>
+            <Tfoot>
+              <Tr>
+                {Object.keys(responseData[0]).map((key) => (
+                  <Th key={`foot${key.toString()}`}>{key}</Th>
+                ))}
+              </Tr>
+            </Tfoot>
+          </Table>
+        </Skeleton>
       </TableContainer>
     </>
   ) : (
