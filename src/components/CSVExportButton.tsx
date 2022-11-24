@@ -21,9 +21,15 @@ const CSVExportButton: React.VFC<Props> = ({ data }) => {
 
     //worksheet.columns = columns.map((x) => ({ header: x, key: x }))
     worksheet.columns = Object.keys(data[0]).map((x) => ({ header: x, key: x }))
-    const _temp = data.map((row) => row.forEach((key: string, value: any) => ({ key: value })))
-    worksheet.addRows
-    const displayMapValues = (key, value, map) => {}
+    //     const _temp = data.map((row) =>
+    //       row.forEach((key: string, value: any) => ({
+    //         key: value,
+    //       })),
+    //     )
+    worksheet.addRows(data)
+    //     const displayMapValues = (key, value, map) => {
+
+    //     }
     //     worksheet.columns = [
     //       { header: 'ID', key: 'id' },
     //       { header: '作成日時', key: 'createdAt' },
