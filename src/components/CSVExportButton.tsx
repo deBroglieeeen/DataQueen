@@ -1,10 +1,8 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button } from '@chakra-ui/react'
+import { Button } from '@chakra-ui/react'
 import React from 'react'
 import ExcelJS from 'exceljs'
 
 type Props = {
-  //   columns: string[]
-  //   rows: any
   data: Map<String, any>[]
 }
 
@@ -18,40 +16,8 @@ const CSVExportButton: React.VFC<Props> = ({ data }) => {
     const workbook = new ExcelJS.Workbook()
     workbook.addWorksheet('sheet1')
     const worksheet = workbook.getWorksheet('sheet1')
-
-    //worksheet.columns = columns.map((x) => ({ header: x, key: x }))
     worksheet.columns = Object.keys(data[0]).map((x) => ({ header: x, key: x }))
-    //     const _temp = data.map((row) =>
-    //       row.forEach((key: string, value: any) => ({
-    //         key: value,
-    //       })),
-    //     )
     worksheet.addRows(data)
-    //     const displayMapValues = (key, value, map) => {
-
-    //     }
-    //     worksheet.columns = [
-    //       { header: 'ID', key: 'id' },
-    //       { header: '作成日時', key: 'createdAt' },
-    //       { header: '名前', key: 'name' },
-    //     ]
-    //     worksheet.addRows([
-    //       {
-    //         id: 'f001',
-    //         createdAt: 1629902208,
-    //         name: 'りんご',
-    //       },
-    //       {
-    //         id: 'f002',
-    //         createdAt: 1629902245,
-    //         name: 'ぶとう',
-    //       },
-    //       {
-    //         id: 'f003',
-    //         createdAt: 1629902265,
-    //         name: 'ばなな',
-    //       },
-    //     ])
 
     const uint8Array =
       format === 'xlsx'
