@@ -15,10 +15,12 @@ type Form = {
 
 type Props = {
   setResponseData: any
+  setIsLoaded: any
+  setRuntime: any
 }
 
-const QueryRunner: React.VFC<Props> = ({ setResponseData }) => {
-  const [addResult, add] = useMutation<AddQueryMutation, AddQueryMutationVariables>(
+const QueryRunner: React.VFC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) => {
+   const [addResult, add] = useMutation<AddQueryMutation, AddQueryMutationVariables>(
     addQueryMutation,
   )
   const { isAuthenticated, loginWithRedirect } = useAuth0()
@@ -44,12 +46,20 @@ const QueryRunner: React.VFC<Props> = ({ setResponseData }) => {
     }
 
     try {
+      const startTime = performance.now()
+      setIsLoaded(false)
       const response = await axios(config)
       console.log(response)
       setResponseData(response.data.data)
       console.log(response.data.data[0])
+      setIsLoaded(true)
+      const endTime = performance.now()
+      const run = endTime - startTime
+      setRuntime(run.toFixed(1))
+      console.log(run)
     } catch (error) {
       console.error(error)
+      setIsLoaded(true)
     }
   }
 
