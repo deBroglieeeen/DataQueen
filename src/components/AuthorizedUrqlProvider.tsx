@@ -11,8 +11,11 @@ import {
 } from 'urql'
 import { fromPromise, fromValue, map, mergeMap, pipe } from 'wonka'
 import { API_HOST } from '../config/constants'
+type Props = {
+  children: React.ReactNode
+}
 
-const AuthorizedUrqlProvider: React.FC = ({ children }) => {
+const AuthorizedUrqlProvider: React.FC<Props> = ({ children }) => {
   const { getAccessTokenSilently, isAuthenticated } = useAuth0()
 
   const fetchOptionsExchange =
