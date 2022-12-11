@@ -27,7 +27,7 @@ const Header: React.VFC = () => {
           <BreadcrumbLink href='#'>SQLクエリ実行</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      <Box>{user ? `(ユーザー:${user?.name}${user.sub})` : null}</Box>
+      {/* <Box>{user ? `(ユーザー:${user?.name}${user.sub})` : null}</Box> */}
     </Box>
   )
 }
