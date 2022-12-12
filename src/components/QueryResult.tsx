@@ -16,7 +16,7 @@ import React, { useEffect } from 'react'
 import { CSVExportButton } from './CSVExportButton'
 
 type Props = {
-  responseData: Map<String, any>[]
+  responseData: Map<String, any>[] | null
   isLoaded: boolean
   runtime: any
 }
