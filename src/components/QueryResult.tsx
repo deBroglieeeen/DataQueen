@@ -18,7 +18,7 @@ import { CSVExportButton } from './CSVExportButton'
 type Props = {
   responseData: Map<String, any>[]
   isLoaded: boolean
-  runtime: Date
+  runtime: any
 }
 
 const QueryResult: React.VFC<Props> = ({ responseData, isLoaded, runtime }) => {
