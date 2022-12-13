@@ -8,6 +8,7 @@ import { useMutation } from 'urql'
 import { AddQueryMutation, AddQueryMutationVariables } from '../generated/graphql'
 import { addQueryMutation } from '../graphql/query'
 import { useAuth0 } from '@auth0/auth0-react'
+import { SERVER_BASE_URI } from '../config/constants'
 
 type Form = {
   query: string
@@ -20,7 +21,7 @@ type Props = {
 }
 
 const QueryRunner: React.VFC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) => {
-   const [addResult, add] = useMutation<AddQueryMutation, AddQueryMutationVariables>(
+  const [addResult, add] = useMutation<AddQueryMutation, AddQueryMutationVariables>(
     addQueryMutation,
   )
   const { isAuthenticated, loginWithRedirect } = useAuth0()
@@ -38,7 +39,7 @@ const QueryRunner: React.VFC<Props> = ({ setResponseData, setIsLoaded, setRuntim
     })
     const config = {
       method: 'post',
-      url: 'http://127.0.0.1:3000/query',
+      url: `${SERVER_BASE_URI}/query`,
       headers: {
         'Content-Type': 'application/json',
       },
