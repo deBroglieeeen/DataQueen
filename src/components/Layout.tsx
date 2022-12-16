@@ -1,12 +1,11 @@
-import { HStack, Box, Flex, Container } from '@chakra-ui/react'
-import React, { ReactNode } from 'react'
-import { Sidebar } from './Sidebar'
-import { SIDEBAR_WIDTH } from '../config/css'
+import { Box, Container } from '@chakra-ui/react'
+import { ReactNode, FC } from 'react'
+import { Sidebar } from './Sidebar/Sidebar'
 type Props = {
   children: ReactNode
 }
 
-const Layout: React.VFC<Props> = ({ children }) => {
+const Layout: FC<Props> = ({ children }) => {
   return (
     <Box display='flex' backgroundColor='#F8F9FA'>
       <Sidebar />
