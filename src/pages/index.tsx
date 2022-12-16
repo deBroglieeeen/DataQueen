@@ -7,14 +7,15 @@ import { QueryResult } from '../components/QueryResult'
 import { useState } from 'react'
 
 const Home: NextPage = () => {
-  const [responseData, setResponseData] = useState(null)
+  const [responseData, setResponseData] = useState<Map<String, any>[]>([])
   const [isLoaded, setIsLoaded] = useState(true)
-  const [runtime, setRuntime] = useState(null)
+  const [runtime, setRuntime] = useState(0)
+
   return (
     <>
       <Layout>
         <Box marginTop='40px'>
-          <Header></Header>
+          <Header />
           <QueryRunner
             setRuntime={setRuntime}
             setIsLoaded={setIsLoaded}

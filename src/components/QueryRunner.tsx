@@ -1,7 +1,7 @@
 import { Box, Button, FormControl, useToast } from '@chakra-ui/react'
 import { VscRunAll } from 'react-icons/vsc'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import React, { useState } from 'react'
+import { useState, FC, Dispatch, SetStateAction } from 'react'
 import axios from 'axios'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import { useMutation } from 'urql'
@@ -15,12 +15,12 @@ type Form = {
 }
 
 type Props = {
-  setResponseData: any
-  setIsLoaded: any
-  setRuntime: any
+  setResponseData: Dispatch<SetStateAction<Map<String, any>[]>>
+  setIsLoaded: Dispatch<SetStateAction<boolean>>
+  setRuntime: Dispatch<SetStateAction<number>>
 }
 
-const QueryRunner: React.VFC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) => {
+const QueryRunner: FC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) => {
   const [addResult, add] = useMutation<AddQueryMutation, AddQueryMutationVariables>(
     addQueryMutation,
   )
@@ -50,13 +50,13 @@ const QueryRunner: React.VFC<Props> = ({ setResponseData, setIsLoaded, setRuntim
       const startTime = performance.now()
       setIsLoaded(false)
       const response = await axios(config)
-      console.log(response)
+
       setResponseData(response.data.data)
-      console.log(response.data.data[0])
+
       setIsLoaded(true)
       const endTime = performance.now()
       const run = endTime - startTime
-      setRuntime(run.toFixed(1))
+      setRuntime(run)
       console.log(run)
     } catch (error) {
       console.error(error)
