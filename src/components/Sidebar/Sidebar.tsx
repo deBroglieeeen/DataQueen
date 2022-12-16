@@ -6,12 +6,7 @@ import { FaTable, FaChartBar } from 'react-icons/fa'
 
 const Sidebar: FC = () => {
   return (
-    <Box
-      // Memo: 開発しにくいため一旦コメント
-      // display={{ sm: 'none', xl: 'block' }}
-      w={'90px'}
-      bgColor={`white`}
-    >
+    <Box display={{ sm: 'none', xl: 'block' }} w={'90px'} bgColor={`white`}>
       <Center paddingY={`10`}>
         <Image src={'/DataQueenSmallLogo.svg'} alt='logo' width={60} height={60} />
       </Center>
