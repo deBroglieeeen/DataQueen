@@ -16,14 +16,14 @@ import { useEffect, FC } from 'react'
 import { CSVExportButton } from './CSVExportButton'
 
 type Props = {
-  responseData: Map<String, any>[] | null
+  responseData: Map<String, any>[]
   isLoaded: boolean
   runtime: number
 }
 
 const QueryResult: FC<Props> = ({ responseData, isLoaded, runtime }) => {
   useEffect(() => {}, [responseData])
-  return responseData ? (
+  return responseData && responseData.length !== 0 ? (
     <>
       <Box display='flex'>
         <CSVExportButton data={responseData} />

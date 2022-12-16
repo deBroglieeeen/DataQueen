@@ -21,6 +21,7 @@ export const buttonStyles = {
           _focus: {
             boxShadow: 'none',
           },
+          // Memo: 同じ名前を設定できないので、コメントアウト
           // _hover: {
           //   boxShadow: 'none',
           // },
