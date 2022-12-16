@@ -12,16 +12,16 @@ import {
   Box,
   Text,
 } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { useEffect, FC } from 'react'
 import { CSVExportButton } from './CSVExportButton'
 
 type Props = {
   responseData: Map<String, any>[]
   isLoaded: boolean
-  runtime: Date
+  runtime: number
 }
 
-const QueryResult: React.VFC<Props> = ({ responseData, isLoaded, runtime }) => {
+const QueryResult: FC<Props> = ({ responseData, isLoaded, runtime }) => {
   useEffect(() => {}, [responseData])
   return responseData ? (
     <>
