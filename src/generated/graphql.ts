@@ -86,6 +86,10 @@ export type Mutation_Root = {
   insert_queries?: Maybe<Queries_Mutation_Response>;
   /** insert a single row into the table: "queries" */
   insert_queries_one?: Maybe<Queries>;
+  /** insert data into the table: "users" */
+  insert_users?: Maybe<Users_Mutation_Response>;
+  /** insert a single row into the table: "users" */
+  insert_users_one?: Maybe<Users>;
 };
 
 
@@ -100,6 +104,20 @@ export type Mutation_RootInsert_QueriesArgs = {
 export type Mutation_RootInsert_Queries_OneArgs = {
   object: Queries_Insert_Input;
   on_conflict?: InputMaybe<Queries_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_UsersArgs = {
+  objects: Array<Users_Insert_Input>;
+  on_conflict?: InputMaybe<Users_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Users_OneArgs = {
+  object: Users_Insert_Input;
+  on_conflict?: InputMaybe<Users_On_Conflict>;
 };
 
 /** column ordering options */
@@ -129,6 +147,33 @@ export type Queries = {
   user_id: Scalars['String'];
 };
 
+/** order by aggregate values of table "queries" */
+export type Queries_Aggregate_Order_By = {
+  avg?: InputMaybe<Queries_Avg_Order_By>;
+  count?: InputMaybe<Order_By>;
+  max?: InputMaybe<Queries_Max_Order_By>;
+  min?: InputMaybe<Queries_Min_Order_By>;
+  stddev?: InputMaybe<Queries_Stddev_Order_By>;
+  stddev_pop?: InputMaybe<Queries_Stddev_Pop_Order_By>;
+  stddev_samp?: InputMaybe<Queries_Stddev_Samp_Order_By>;
+  sum?: InputMaybe<Queries_Sum_Order_By>;
+  var_pop?: InputMaybe<Queries_Var_Pop_Order_By>;
+  var_samp?: InputMaybe<Queries_Var_Samp_Order_By>;
+  variance?: InputMaybe<Queries_Variance_Order_By>;
+};
+
+/** input type for inserting array relation for remote table "queries" */
+export type Queries_Arr_Rel_Insert_Input = {
+  data: Array<Queries_Insert_Input>;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Queries_On_Conflict>;
+};
+
+/** order by avg() on columns of table "queries" */
+export type Queries_Avg_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
 /** Boolean expression to filter rows from the table "queries". All fields are combined with a logical 'AND'. */
 export type Queries_Bool_Exp = {
   _and?: InputMaybe<Array<Queries_Bool_Exp>>;
@@ -150,6 +195,23 @@ export type Queries_Constraint =
 /** input type for inserting data into table "queries" */
 export type Queries_Insert_Input = {
   content?: InputMaybe<Scalars['String']>;
+  user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
+};
+
+/** order by max() on columns of table "queries" */
+export type Queries_Max_Order_By = {
+  content?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
+};
+
+/** order by min() on columns of table "queries" */
+export type Queries_Min_Order_By = {
+  content?: InputMaybe<Order_By>;
+  created_at?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+  user_id?: InputMaybe<Order_By>;
 };
 
 /** response of any mutation on the table "queries" */
@@ -191,6 +253,21 @@ export type Queries_Select_Column =
   /** column name */
   | 'user_id';
 
+/** order by stddev() on columns of table "queries" */
+export type Queries_Stddev_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
+/** order by stddev_pop() on columns of table "queries" */
+export type Queries_Stddev_Pop_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
+/** order by stddev_samp() on columns of table "queries" */
+export type Queries_Stddev_Samp_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
 /** Streaming cursor of the table "queries" */
 export type Queries_Stream_Cursor_Input = {
   /** Stream column input with initial value */
@@ -208,14 +285,34 @@ export type Queries_Stream_Cursor_Value_Input = {
   user_id?: InputMaybe<Scalars['String']>;
 };
 
+/** order by sum() on columns of table "queries" */
+export type Queries_Sum_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
 /** placeholder for update columns of table "queries" (current role has no relevant permissions) */
 export type Queries_Update_Column =
   /** placeholder (do not use) */
   | '_PLACEHOLDER';
 
+/** order by var_pop() on columns of table "queries" */
+export type Queries_Var_Pop_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
+/** order by var_samp() on columns of table "queries" */
+export type Queries_Var_Samp_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
+/** order by variance() on columns of table "queries" */
+export type Queries_Variance_Order_By = {
+  id?: InputMaybe<Order_By>;
+};
+
 export type Query_Root = {
   __typename?: 'query_root';
-  /** fetch data from the table: "queries" */
+  /** An array relationship */
   queries: Array<Queries>;
   /** fetch data from the table: "queries" using primary key columns */
   queries_by_pk?: Maybe<Queries>;
@@ -255,7 +352,7 @@ export type Query_RootUsers_By_PkArgs = {
 
 export type Subscription_Root = {
   __typename?: 'subscription_root';
-  /** fetch data from the table: "queries" */
+  /** An array relationship */
   queries: Array<Queries>;
   /** fetch data from the table: "queries" using primary key columns */
   queries_by_pk?: Maybe<Queries>;
@@ -330,6 +427,18 @@ export type Users = {
   created_at: Scalars['timestamptz'];
   id: Scalars['String'];
   name: Scalars['String'];
+  /** An array relationship */
+  queries: Array<Queries>;
+};
+
+
+/** DataQueen user table */
+export type UsersQueriesArgs = {
+  distinct_on?: InputMaybe<Array<Queries_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Queries_Order_By>>;
+  where?: InputMaybe<Queries_Bool_Exp>;
 };
 
 /** Boolean expression to filter rows from the table "users". All fields are combined with a logical 'AND'. */
@@ -340,6 +449,42 @@ export type Users_Bool_Exp = {
   created_at?: InputMaybe<Timestamptz_Comparison_Exp>;
   id?: InputMaybe<String_Comparison_Exp>;
   name?: InputMaybe<String_Comparison_Exp>;
+  queries?: InputMaybe<Queries_Bool_Exp>;
+};
+
+/** unique or primary key constraints on table "users" */
+export type Users_Constraint =
+  /** unique or primary key constraint on columns "id" */
+  | 'users_pkey';
+
+/** input type for inserting data into table "users" */
+export type Users_Insert_Input = {
+  id?: InputMaybe<Scalars['String']>;
+  name?: InputMaybe<Scalars['String']>;
+  queries?: InputMaybe<Queries_Arr_Rel_Insert_Input>;
+};
+
+/** response of any mutation on the table "users" */
+export type Users_Mutation_Response = {
+  __typename?: 'users_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Users>;
+};
+
+/** input type for inserting object relation for remote table "users" */
+export type Users_Obj_Rel_Insert_Input = {
+  data: Users_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Users_On_Conflict>;
+};
+
+/** on_conflict condition type for table "users" */
+export type Users_On_Conflict = {
+  constraint: Users_Constraint;
+  update_columns?: Array<Users_Update_Column>;
+  where?: InputMaybe<Users_Bool_Exp>;
 };
 
 /** Ordering options when selecting data from "users". */
@@ -347,6 +492,7 @@ export type Users_Order_By = {
   created_at?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
   name?: InputMaybe<Order_By>;
+  queries_aggregate?: InputMaybe<Queries_Aggregate_Order_By>;
 };
 
 /** select columns of table "users" */
@@ -372,6 +518,11 @@ export type Users_Stream_Cursor_Value_Input = {
   id?: InputMaybe<Scalars['String']>;
   name?: InputMaybe<Scalars['String']>;
 };
+
+/** placeholder for update columns of table "users" (current role has no relevant permissions) */
+export type Users_Update_Column =
+  /** placeholder (do not use) */
+  | '_PLACEHOLDER';
 
 export type AddQueryMutationVariables = Exact<{
   content: Scalars['String'];
@@ -442,6 +593,66 @@ export default {
             "type": {
               "kind": "OBJECT",
               "name": "queries",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "object",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "Any"
+                  }
+                }
+              },
+              {
+                "name": "on_conflict",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Any"
+                }
+              }
+            ]
+          },
+          {
+            "name": "insert_users",
+            "type": {
+              "kind": "OBJECT",
+              "name": "users_mutation_response",
+              "ofType": null
+            },
+            "args": [
+              {
+                "name": "objects",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "LIST",
+                    "ofType": {
+                      "kind": "NON_NULL",
+                      "ofType": {
+                        "kind": "SCALAR",
+                        "name": "Any"
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "name": "on_conflict",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Any"
+                }
+              }
+            ]
+          },
+          {
+            "name": "insert_users_one",
+            "type": {
+              "kind": "OBJECT",
+              "name": "users",
               "ofType": null
             },
             "args": [
@@ -1066,6 +1277,108 @@ export default {
               "ofType": {
                 "kind": "SCALAR",
                 "name": "Any"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "queries",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "queries",
+                    "ofType": null
+                  }
+                }
+              }
+            },
+            "args": [
+              {
+                "name": "distinct_on",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Any"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "limit",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Any"
+                }
+              },
+              {
+                "name": "offset",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Any"
+                }
+              },
+              {
+                "name": "order_by",
+                "type": {
+                  "kind": "LIST",
+                  "ofType": {
+                    "kind": "NON_NULL",
+                    "ofType": {
+                      "kind": "SCALAR",
+                      "name": "Any"
+                    }
+                  }
+                }
+              },
+              {
+                "name": "where",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Any"
+                }
+              }
+            ]
+          }
+        ],
+        "interfaces": []
+      },
+      {
+        "kind": "OBJECT",
+        "name": "users_mutation_response",
+        "fields": [
+          {
+            "name": "affected_rows",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Any"
+              }
+            },
+            "args": []
+          },
+          {
+            "name": "returning",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "LIST",
+                "ofType": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "OBJECT",
+                    "name": "users",
+                    "ofType": null
+                  }
+                }
               }
             },
             "args": []
