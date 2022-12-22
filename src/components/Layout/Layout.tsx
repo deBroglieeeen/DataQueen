@@ -1,6 +1,6 @@
 import { Box, Container } from '@chakra-ui/react'
 import { ReactNode, FC } from 'react'
-import { Sidebar } from './Sidebar/Sidebar'
+import { Sidebar } from '../Sidebar/Sidebar'
 type Props = {
   children: ReactNode
 }

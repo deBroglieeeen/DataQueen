@@ -13,7 +13,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useEffect, FC } from 'react'
-import { CSVExportButton } from './CSVExportButton'
+import { CSVExportButton } from '../CSVExportButton/CSVExportButton'
 
 type Props = {
   responseData: Map<String, any>[]

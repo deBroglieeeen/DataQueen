@@ -5,10 +5,10 @@ import { useState, FC, Dispatch, SetStateAction } from 'react'
 import axios from 'axios'
 import Editor, { useMonaco } from '@monaco-editor/react'
 import { useMutation } from 'urql'
-import { AddQueryMutation, AddQueryMutationVariables } from '../generated/graphql'
-import { addQueryMutation } from '../graphql/query'
+import { AddQueryMutation, AddQueryMutationVariables } from '../../generated/graphql'
+import { addQueryMutation } from '../../graphql/query'
 import { useAuth0 } from '@auth0/auth0-react'
-import { SERVER_BASE_URI } from '../config/constants'
+import { SERVER_BASE_URI } from '../../config/constants'
 
 type Form = {
   query: string

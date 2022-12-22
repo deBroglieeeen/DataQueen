@@ -1,12 +1,9 @@
 import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
+import { useEffect, FC } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
-import { GetUserByIdQuery, GetUserByIdQueryVariables } from '../generated/graphql'
-import { getUserByIdQuery } from '../graphql/user'
-import { useQuery } from 'urql'
 
-const Header: React.VFC = () => {
-  const { user, isAuthenticated, loginWithRedirect } = useAuth0()
+const Header: FC = () => {
+  const { isAuthenticated, loginWithRedirect } = useAuth0()
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -27,7 +24,6 @@ const Header: React.VFC = () => {
           <BreadcrumbLink href='#'>SQLクエリ実行</BreadcrumbLink>
         </BreadcrumbItem>
       </Breadcrumb>
-      {/* <Box>{user ? `(ユーザー:${user?.name}${user.sub})` : null}</Box> */}
     </Box>
   )
 }
