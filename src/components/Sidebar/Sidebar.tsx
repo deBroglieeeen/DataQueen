@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Box, Center } from '@chakra-ui/react'
-import { SidebarIcon } from '../SidebarIcon'
+import { SidebarIcon } from '@/components/SidebarIcon'
 import Image from 'next/image'
 import { FaTable, FaChartBar } from 'react-icons/fa'
 
