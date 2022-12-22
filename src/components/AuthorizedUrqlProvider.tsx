@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import React from 'react'
+import { FC, ReactNode } from 'react'
 import {
   cacheExchange,
   createClient,
@@ -10,13 +10,14 @@ import {
   Provider,
 } from 'urql'
 import { fromPromise, fromValue, map, mergeMap, pipe } from 'wonka'
-import { API_HOST } from '../config/constants'
+import { API_HOST } from '@/config/constants'
+
 type Props = {
-  children: React.ReactNode
+  children: ReactNode
 }
 
-const AuthorizedUrqlProvider: React.FC<Props> = ({ children }) => {
-  const { getAccessTokenSilently, isAuthenticated } = useAuth0()
+const AuthorizedUrqlProvider: FC<Props> = ({ children }) => {
+  const { getAccessTokenSilently } = useAuth0()
 
   const fetchOptionsExchange =
     (fn: any): Exchange =>

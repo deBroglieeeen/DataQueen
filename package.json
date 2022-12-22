@@ -8,7 +8,9 @@
     "lint": "next lint",
     "format": "prettier --write './**/*.{js,jsx,ts,tsx,json}'",
     "codegen": "graphql-codegen --config codegen.yml --require dotenv/config",
-    "type-check": "tsc --pretty --noEmit"
+    "type-check": "tsc --pretty --noEmit",
+    "prepare": "husky install",
+    "cspell": "cspell src/**/*.{ts,tsx}"
   },
   "dependencies": {
     "@auth0/auth0-react": "^1.12.0",
@@ -28,6 +30,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.39.1",
     "react-icons": "^4.6.0",
+    "recoil": "^0.7.6",
     "urql": "^3.0.3"
   },
   "devDependencies": {
@@ -39,16 +42,21 @@
     "@graphql-codegen/urql-introspection": "^2.2.1",
     "@types/node": "18.11.9",
     "@types/react": "18.0.9",
+    "@types/recoil": "^0.0.9",
+    "cspell": "^6.18.0",
     "eslint": "8.15.0",
     "eslint-config-next": "^13.0.2",
     "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.2",
     "lint-staged": "^12.4.1",
     "prettier": "^2.6.2",
     "typescript": "4.6.4"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
+      "prettier --write",
+      "eslint --fix",
+      "cspell"
     ]
   }
 }

@@ -3,13 +3,13 @@ import { ChakraProvider } from '@chakra-ui/react'
 import '@fontsource/noto-sans-jp/400.css'
 import '@fontsource/noto-sans-jp/700.css'
 import { Auth0Provider } from '@auth0/auth0-react'
-import { AuthorizedUrqlProvider } from '../components/AuthorizedUrqlProvider'
+import { AuthorizedUrqlProvider } from '@/components/AuthorizedUrqlProvider'
 import {
   AUTH0_API_AUDIENCE,
   AUTH0_CLIENT_ID,
   AUTH0_DOMAIN,
   AUTH0_REDIRECT_URI,
-} from '../config/constants'
+} from '@/config/constants'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

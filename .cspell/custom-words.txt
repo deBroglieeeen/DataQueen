@@ -1,0 +1,21 @@
+# Ref: https://cspell.org/docs/dictionaries-custom/
+Chakra
+dataqueen
+Noto
+urql
+wonka
+fontsource
+
+# graphql generated
+timestamptz
+ilike
+iregex
+nilike
+niregex
+nlike
+nregex
+nsimilar
+pkey
+
+# urql
+dedup

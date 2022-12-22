@@ -1,9 +1,9 @@
 import { Box } from '@chakra-ui/react'
 import type { NextPage } from 'next'
-import { Layout } from '../components/Layout'
-import { QueryRunner } from '../components/QueryRunner'
-import { Header } from '../components/Header'
-import { QueryResult } from '../components/QueryResult'
+import { Layout } from '@/components/Layout/Layout'
+import { QueryRunner } from '@/components/QueryRunner/QueryRunner'
+import { Header } from '@/components/Header/Header'
+import { QueryResult } from '@/components/QueryResult/QueryResult'
 import { useState } from 'react'
 
 const Home: NextPage = () => {

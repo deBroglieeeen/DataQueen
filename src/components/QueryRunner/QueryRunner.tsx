@@ -3,12 +3,12 @@ import { VscRunAll } from 'react-icons/vsc'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useState, FC, Dispatch, SetStateAction } from 'react'
 import axios from 'axios'
-import Editor, { useMonaco } from '@monaco-editor/react'
+import Editor from '@monaco-editor/react'
 import { useMutation } from 'urql'
-import { AddQueryMutation, AddQueryMutationVariables } from '../generated/graphql'
-import { addQueryMutation } from '../graphql/query'
+import { AddQueryMutation, AddQueryMutationVariables } from '@/generated/graphql'
+import { addQueryMutation } from '@/graphql/query'
 import { useAuth0 } from '@auth0/auth0-react'
-import { SERVER_BASE_URI } from '../config/constants'
+import { SERVER_BASE_URI } from '@/config/constants'
 
 type Form = {
   query: string
@@ -25,11 +25,7 @@ const QueryRunner: FC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) =>
     addQueryMutation,
   )
   const { isAuthenticated, loginWithRedirect } = useAuth0()
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Form>({ mode: 'onBlur', reValidateMode: 'onChange' })
+  const { handleSubmit } = useForm<Form>({ mode: 'onBlur', reValidateMode: 'onChange' })
   const toast = useToast()
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
@@ -88,7 +84,6 @@ const QueryRunner: FC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) =>
     }
   }
 
-  const monaco = useMonaco()
   const [editorValue, setEditorValue] = useState('SELECT * FROM User')
   function handleEditorChange(value: any, event: any) {
     console.log('here is the current model value:', value)

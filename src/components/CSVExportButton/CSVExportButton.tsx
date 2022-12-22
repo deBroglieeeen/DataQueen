@@ -1,12 +1,12 @@
 import { Button } from '@chakra-ui/react'
-import React from 'react'
+import { FC } from 'react'
 import ExcelJS from 'exceljs'
 
 type Props = {
   data: Map<String, any>[]
 }
 
-const CSVExportButton: React.VFC<Props> = ({ data }) => {
+const CSVExportButton: FC<Props> = ({ data }) => {
   const handlerClickDownloadButton = async (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     format: 'xlsx' | 'csv',

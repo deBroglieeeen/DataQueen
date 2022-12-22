@@ -13,7 +13,7 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useEffect, FC } from 'react'
-import { CSVExportButton } from './CSVExportButton'
+import { CSVExportButton } from '@/components/CSVExportButton/CSVExportButton'
 
 type Props = {
   responseData: Map<String, any>[]
@@ -77,12 +77,12 @@ const QueryResult: FC<Props> = ({ responseData, isLoaded, runtime }) => {
         <Tbody>
           <Tr>
             <Td>inches</Td>
-            <Td>millimetres (mm)</Td>
+            <Td>millimeters (mm)</Td>
             <Td isNumeric>25.4</Td>
           </Tr>
           <Tr>
             <Td>feet</Td>
-            <Td>centimetres (cm)</Td>
+            <Td>centimeters (cm)</Td>
             <Td isNumeric>30.48</Td>
           </Tr>
           <Tr>
