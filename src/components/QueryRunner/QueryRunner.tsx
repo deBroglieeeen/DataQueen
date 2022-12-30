@@ -1,4 +1,4 @@
-import { Box, Button, FormControl, useToast } from '@chakra-ui/react'
+import { Box, Button, useToast } from '@chakra-ui/react'
 import { VscRunAll } from 'react-icons/vsc'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useState, FC, Dispatch, SetStateAction } from 'react'
@@ -8,7 +8,7 @@ import { useMutation } from 'urql'
 import { AddQueryMutation, AddQueryMutationVariables } from '@/generated/graphql'
 import { addQueryMutation } from '@/graphql/query'
 import { useAuth0 } from '@auth0/auth0-react'
-import { SERVER_BASE_URI } from '@/config/constants'
+import { config } from '@/config/axios'
 
 type Form = {
   query: string
@@ -29,23 +29,20 @@ const QueryRunner: FC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) =>
   const toast = useToast()
 
   const onSubmit: SubmitHandler<Form> = async (data) => {
-    const executeQuery = JSON.stringify({
-      query: editorValue,
-      date: '20220101',
-    })
-    const config = {
-      method: 'post',
-      url: `${SERVER_BASE_URI}/query`,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      data: executeQuery,
-    }
-
+    // Todo: custom hookにしてロジック切り出す
     try {
       const startTime = performance.now()
       setIsLoaded(false)
-      const response = await axios(config)
+      const response = await axios(
+        config(
+          'post',
+          'query',
+          JSON.stringify({
+            query: editorValue,
+            date: '20220101',
+          }),
+        ),
+      )
 
       setResponseData(response.data.data)
 

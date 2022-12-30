@@ -1,17 +1,9 @@
+import { config } from '@/config/axios'
 import { RUST_API_BASE } from '@/config/constants'
 import { Schema } from '@/types/schema'
 import { useAuth0 } from '@auth0/auth0-react'
 import axios from 'axios'
 import { useCallback, useEffect, useState } from 'react'
-
-const config = (method: 'get' | 'post', data: any, uri: 'schema' | 'query') => ({
-  method: method,
-  url: RUST_API_BASE + uri,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  data: data,
-})
 
 export const useTableSchema = () => {
   const [schema, setSchema] = useState<Schema | null>(null)
@@ -21,10 +13,10 @@ export const useTableSchema = () => {
     await axios(
       config(
         'post',
+        'schema',
         JSON.stringify({
           unit: 'inprog',
         }),
-        'schema',
       ),
     )
       .then((res) => {
