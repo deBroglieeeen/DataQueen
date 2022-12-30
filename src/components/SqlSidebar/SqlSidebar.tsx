@@ -1,3 +1,5 @@
+import { useTableSchema } from '@/hooks/useTableSchema'
+import { DataBase, Table, TableDefinition } from '@/types/schema'
 import {
   Accordion,
   AccordionButton,
@@ -6,133 +8,36 @@ import {
   AccordionPanel,
   Box,
 } from '@chakra-ui/react'
-import { table } from 'console'
-
-type column = {
-  id: number
-  name: string
-}
-
-type table = {
-  id: number
-  name: string
-  columns: column[]
-}
-
-const dummyData = {
-  dataset: {
-    databases: [
-      {
-        id: 1,
-        name: 'database1',
-        tables: [
-          {
-            id: 1,
-            name: 'table1',
-            columns: [
-              {
-                id: 1,
-                name: 'column1',
-              },
-              {
-                id: 2,
-                name: 'column2',
-              },
-              {
-                id: 3,
-                name: 'column3',
-              },
-            ],
-          },
-          {
-            id: 2,
-            name: 'table2',
-            columns: [
-              {
-                id: 1,
-                name: 'column1',
-              },
-              {
-                id: 2,
-                name: 'column2',
-              },
-              {
-                id: 3,
-                name: 'column3',
-              },
-            ],
-          },
-        ],
-      },
-      {
-        id: 2,
-        name: 'database2',
-        tables: [
-          {
-            id: 1,
-            name: 'table1',
-            columns: [
-              {
-                id: 1,
-                name: 'column1',
-              },
-              {
-                id: 2,
-                name: 'column2',
-              },
-              {
-                id: 3,
-                name: 'column3',
-              },
-            ],
-          },
-          {
-            id: 2,
-            name: 'table2',
-            columns: [
-              {
-                id: 1,
-                name: 'column1',
-              },
-              {
-                id: 2,
-                name: 'column2',
-              },
-              {
-                id: 3,
-                name: 'column3',
-              },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-}
 
 export const SqlSidebar = () => {
-  const renderColumns = (columns: column[]) => {
+  const { schema } = useTableSchema()
+
+  const renderColumns = (columns: TableDefinition[]) => {
     return (
       <>
-        {columns.map(({ id, name }) => {
-          return <Box key={id}>{name}</Box>
+        {columns.map(({ name }) => {
+          return (
+            <Box key={name} textOverflow={`ellipsis`} overflow={`hidden`} whiteSpace={`nowrap`}>
+              {name}
+            </Box>
+          )
         })}
       </>
     )
   }
 
-  const renderTables = (tables: table[]) => {
+  const renderTables = (tables: Table[]) => {
     return (
       <>
         <Accordion allowMultiple>
-          {tables.map(({ id, name, columns }) => {
+          {tables.map(({ table_name, table_definition }) => {
             return (
-              <AccordionItem key={id}>
+              <AccordionItem key={table_name}>
                 <AccordionButton>
                   <AccordionIcon />
-                  {name}
+                  {table_name}
                 </AccordionButton>
-                <AccordionPanel>{renderColumns(columns)}</AccordionPanel>
+                <AccordionPanel>{renderColumns(table_definition)}</AccordionPanel>
               </AccordionItem>
             )
           })}
@@ -140,18 +45,41 @@ export const SqlSidebar = () => {
       </>
     )
   }
-  return (
-    <>
-      <Box w={`160px`} paddingTop={`80px`} paddingLeft={`16px`}>
+
+  const renderDbList = (dbList: DataBase[]) => {
+    return (
+      <>
         <Accordion allowMultiple>
-          {dummyData.dataset.databases.map(({ id, name, tables }) => {
+          {dbList.map(({ db_name, tables }) => {
             return (
-              <AccordionItem key={id}>
+              <AccordionItem key={db_name}>
                 <AccordionButton>
                   <AccordionIcon />
-                  <Box>{name}</Box>
+                  {db_name}
                 </AccordionButton>
                 <AccordionPanel>{renderTables(tables)}</AccordionPanel>
+              </AccordionItem>
+            )
+          })}
+        </Accordion>
+      </>
+    )
+  }
+  if (!schema) return <></>
+
+  return (
+    <>
+      <Box minW={`160px`} w={`max-content`} paddingTop={`80px`} paddingLeft={`16px`}>
+        <Box>{schema.schema_name}</Box>
+        <Accordion allowMultiple>
+          {schema.catalogs.map(({ catalog_name, db_list }) => {
+            return (
+              <AccordionItem key={catalog_name}>
+                <AccordionButton>
+                  <AccordionIcon />
+                  <Box>{catalog_name}</Box>
+                </AccordionButton>
+                <AccordionPanel>{renderDbList(db_list)}</AccordionPanel>
               </AccordionItem>
             )
           })}
