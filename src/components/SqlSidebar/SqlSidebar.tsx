@@ -69,7 +69,7 @@ export const SqlSidebar = () => {
 
   return (
     <>
-      <Box minW={`160px`} maxW={`max-content`} paddingTop={`80px`} paddingLeft={`16px`}>
+      <Box minW={`max-content`} paddingTop={`80px`} paddingLeft={`16px`}>
         <Box>{schema.schema_name}</Box>
         <Accordion allowMultiple>
           {schema.catalogs.map(({ catalog_name, db_list }) => {

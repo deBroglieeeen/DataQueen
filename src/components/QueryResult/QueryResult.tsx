@@ -12,8 +12,9 @@ import {
   Box,
   Text,
 } from '@chakra-ui/react'
-import { useEffect, FC } from 'react'
+import { FC } from 'react'
 import { CSVExportButton } from '@/components/CSVExportButton/CSVExportButton'
+import { QueryResultSample } from './QueryResultSample'
 
 type Props = {
   responseData: Map<String, any>[]
@@ -22,10 +23,9 @@ type Props = {
 }
 
 const QueryResult: FC<Props> = ({ responseData, isLoaded, runtime }) => {
-  useEffect(() => {}, [responseData])
   return responseData && responseData.length !== 0 ? (
     <>
-      <Box display='flex'>
+      <Box>
         <CSVExportButton data={responseData} />
         <Box marginLeft='20px' paddingTop='5px'>
           <Text>{`クエリ実行時間: ${(runtime / 1000).toFixed(3)}秒`}</Text>
@@ -64,42 +64,7 @@ const QueryResult: FC<Props> = ({ responseData, isLoaded, runtime }) => {
       </TableContainer>
     </>
   ) : (
-    <TableContainer marginTop='40px'>
-      <Table variant='striped' bg='#EEE6F8'>
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
-        <Thead>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-          </Tr>
-        </Thead>
-        <Tbody>
-          <Tr>
-            <Td>inches</Td>
-            <Td>millimeters (mm)</Td>
-            <Td isNumeric>25.4</Td>
-          </Tr>
-          <Tr>
-            <Td>feet</Td>
-            <Td>centimeters (cm)</Td>
-            <Td isNumeric>30.48</Td>
-          </Tr>
-          <Tr>
-            <Td>yards</Td>
-            <Td>metres (m)</Td>
-            <Td isNumeric>0.91444</Td>
-          </Tr>
-        </Tbody>
-        <Tfoot>
-          <Tr>
-            <Th>To convert</Th>
-            <Th>into</Th>
-            <Th isNumeric>multiply by</Th>
-          </Tr>
-        </Tfoot>
-      </Table>
-    </TableContainer>
+    <QueryResultSample />
   )
 }
 

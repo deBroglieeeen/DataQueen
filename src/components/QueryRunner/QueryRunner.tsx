@@ -93,7 +93,7 @@ const QueryRunner: FC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) =>
         <Button colorScheme='teal' onClick={handleClickRun} rightIcon={<VscRunAll />} type='submit'>
           実行
         </Button>
-        <Box paddingTop={`40px`} paddingBottom={`40px`}>
+        <Box paddingTop={`40px`} paddingBottom={`40px`} maxW={`100%`}>
           <Editor
             height='316px'
             defaultLanguage='sql'
