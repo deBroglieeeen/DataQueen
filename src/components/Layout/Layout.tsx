@@ -9,7 +9,9 @@ const Layout: FC<Props> = ({ children }) => {
   return (
     <Box display='flex' backgroundColor='#F8F9FA'>
       <Sidebar />
-      <Container minHeight='container.xl'>{children}</Container>
+      <Box width={`full`} paddingLeft={`24px`} paddingRight={`40px`}>
+        {children}
+      </Box>
     </Box>
   )
 }
