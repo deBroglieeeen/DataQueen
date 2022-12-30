@@ -25,7 +25,7 @@ type Props = {
 const QueryResult: FC<Props> = ({ responseData, isLoaded, runtime }) => {
   return responseData && responseData.length !== 0 ? (
     <>
-      <Box>
+      <Box display={`flex`}>
         <CSVExportButton data={responseData} />
         <Box marginLeft='20px' paddingTop='5px'>
           <Text>{`クエリ実行時間: ${(runtime / 1000).toFixed(3)}秒`}</Text>
