@@ -92,29 +92,19 @@ const QueryRunner: FC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) =>
 
   return (
     <>
-      <Box marginTop='40px'>
-        <Box display='flex' marginBottom='40px'>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Button
-              colorScheme='teal'
-              onClick={handleClickRun}
-              rightIcon={<VscRunAll />}
-              type='submit'
-            >
-              実行
-            </Button>
-            <FormControl marginTop='40px'>
-              <Editor
-                height='316px'
-                width='77vw'
-                defaultLanguage='sql'
-                defaultValue='SELECT * FROM User'
-                onChange={handleEditorChange}
-              />
-            </FormControl>
-          </form>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Button colorScheme='teal' onClick={handleClickRun} rightIcon={<VscRunAll />} type='submit'>
+          実行
+        </Button>
+        <Box paddingTop={`40px`} paddingBottom={`40px`}>
+          <Editor
+            height='316px'
+            defaultLanguage='sql'
+            defaultValue='SELECT * FROM User;'
+            onChange={handleEditorChange}
+          />
         </Box>
-      </Box>
+      </form>
     </>
   )
 }

@@ -14,19 +14,13 @@ const Home: NextPage = () => {
   return (
     <>
       <Layout>
-        <Box marginTop='40px'>
-          <Header />
-          <QueryRunner
-            setRuntime={setRuntime}
-            setIsLoaded={setIsLoaded}
-            setResponseData={setResponseData}
-          ></QueryRunner>
-          <QueryResult
-            runtime={runtime}
-            isLoaded={isLoaded}
-            responseData={responseData}
-          ></QueryResult>
-        </Box>
+        <Header />
+        <QueryRunner
+          setRuntime={setRuntime}
+          setIsLoaded={setIsLoaded}
+          setResponseData={setResponseData}
+        />
+        <QueryResult runtime={runtime} isLoaded={isLoaded} responseData={responseData} />
       </Layout>
     </>
   )
