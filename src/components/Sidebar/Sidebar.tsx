@@ -8,7 +8,7 @@ import { SqlSidebar } from '../SqlSidebar'
 const Sidebar: FC = () => {
   return (
     <>
-      <Box display={{ sm: 'none', xl: 'block' }} w={'90px'} bgColor={`white`}>
+      <Box w={'90px'} bgColor={`white`}>
         <Center paddingY={`10`}>
           <Image src={'/DataQueenSmallLogo.svg'} alt='logo' width={60} height={60} />
         </Center>

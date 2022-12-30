@@ -5,6 +5,7 @@ Noto
 urql
 wonka
 fontsource
+inprog
 
 # graphql generated
 timestamptz

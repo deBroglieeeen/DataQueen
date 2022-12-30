@@ -12,7 +12,7 @@ const Header: FC = () => {
   }, [isAuthenticated, loginWithRedirect])
 
   return (
-    <Box display='flex'>
+    <Box display='flex' paddingTop={`40px`} paddingBottom={`40px`}>
       <Breadcrumb>
         <BreadcrumbItem>
           <BreadcrumbLink href='#'>データセット</BreadcrumbLink>
