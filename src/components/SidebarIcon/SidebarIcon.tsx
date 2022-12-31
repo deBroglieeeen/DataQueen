@@ -11,7 +11,7 @@ type Props = {
 
 export const SidebarIcon: FC<Props> = ({ text, icon, tips }) => {
   const router = useRouter()
-  const isActive = router.asPath.endsWith(`#${text}`)
+  const isActive = router.asPath.includes(`#${encodeURI(text)}`)
 
   return (
     <Box paddingY={`2`}>

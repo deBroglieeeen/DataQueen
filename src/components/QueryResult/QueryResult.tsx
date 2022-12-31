@@ -47,7 +47,9 @@ const QueryResult: FC<Props> = ({ responseData, isLoaded, runtime }) => {
               {responseData.map((data, index) => (
                 <Tr key={`body Tr ${index}`}>
                   {Object.values(data).map((value, index) => (
-                    <Td key={`${data.toString()}${index}${value.toString()}`}>{value}</Td>
+                    <Td key={`${data.toString()}${index}${value.toString()}`}>
+                      {value.toString()}
+                    </Td>
                   ))}
                 </Tr>
               ))}

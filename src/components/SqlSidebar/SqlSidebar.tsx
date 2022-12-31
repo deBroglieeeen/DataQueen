@@ -57,7 +57,7 @@ export const SqlSidebar = () => {
               <AccordionItem key={db_name}>
                 <AccordionButton>
                   <AccordionIcon />
-                  {db_name}
+                  <Box>{db_name}</Box>
                 </AccordionButton>
                 <AccordionPanel>{renderTables(tables)}</AccordionPanel>
               </AccordionItem>
@@ -73,19 +73,7 @@ export const SqlSidebar = () => {
     <>
       <Box w={`200px`} maxW={`max-content`} paddingTop={`80px`} paddingLeft={`16px`}>
         <Box>{schema.schema_name}</Box>
-        <Accordion allowMultiple>
-          {schema.catalogs.map(({ catalog_name, db_list }) => {
-            return (
-              <AccordionItem key={catalog_name}>
-                <AccordionButton>
-                  <AccordionIcon />
-                  <Box>{catalog_name}</Box>
-                </AccordionButton>
-                <AccordionPanel>{renderDbList(db_list)}</AccordionPanel>
-              </AccordionItem>
-            )
-          })}
-        </Accordion>
+        {renderDbList(schema.catalogs[0].db_list)}
       </Box>
     </>
   )
