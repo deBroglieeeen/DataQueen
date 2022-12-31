@@ -14,7 +14,7 @@ const Sidebar: FC = () => {
         </Center>
 
         <Center>
-          <SidebarIcon text='設定' icon={<FaChartBar color='#AA82DD' />} tips='グラフ' />
+          <SidebarIcon text='設定' icon={<FaChartBar color='#AA82DD' />} tips='設定' />
         </Center>
         <Center>
           <SidebarIcon text='SQL' icon={<FaTable color='#AA82DD' />} tips='SQLクエリ' />
