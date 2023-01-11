@@ -7,7 +7,7 @@ type Props = {
 
 const Layout: FC<Props> = ({ children }) => {
   return (
-    <Box display='flex' backgroundColor='#F8F9FA'>
+    <Box display='flex'>
       <Sidebar />
       <Box width={`full`} paddingLeft={`24px`} paddingRight={`40px`}>
         {children}

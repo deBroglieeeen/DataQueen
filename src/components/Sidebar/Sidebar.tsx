@@ -8,11 +8,10 @@ import { SqlSidebar } from '../SqlSidebar'
 const Sidebar: FC = () => {
   return (
     <>
-      <Box w={'90px'} bgColor={`white`}>
+      <Box w={'90px'}>
         <Center paddingY={`10`}>
           <Image src={'/DataQueenSmallLogo.svg'} alt='logo' width={60} height={60} />
         </Center>
-
         <Center>
           <SidebarIcon text='設定' icon={<FaChartBar color='#AA82DD' />} tips='設定' />
         </Center>

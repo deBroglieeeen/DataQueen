@@ -90,7 +90,7 @@ const QueryRunner: FC<Props> = ({ setResponseData, setIsLoaded, setRuntime }) =>
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <Button colorScheme='teal' onClick={handleClickRun} rightIcon={<VscRunAll />} type='submit'>
+        <Button onClick={handleClickRun} rightIcon={<VscRunAll />} type='submit'>
           実行
         </Button>
         <Box paddingTop={`40px`} paddingBottom={`40px`} maxW={`100%`}>
